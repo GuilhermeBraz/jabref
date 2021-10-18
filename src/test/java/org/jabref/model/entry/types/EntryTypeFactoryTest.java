@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+
 import org.jabref.model.entry.field.FieldPriority;
 import org.jabref.model.entry.field.StandardField;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,6 +44,15 @@ class EntryTypeFactoryTest {
     public void testeUmNullInv() {
         boolean RetornoFeito = entryType.isEqualNameAndFieldBased(entry, null);
         assertEquals(false, RetornoFeito);
+    }
+
+    @Test
+    public void testeUmNullTrue() {
+        boolean RetornoFeito = entryType.isEqualNameAndFieldBased(entry, entry);
+        assertEquals(Objects.equals(entry.getType(), entry.getType())
+                && Objects.equals(entry.getRequiredFields(), entry.getRequiredFields())
+                && Objects.equals(entry.getOptionalFields(), entry.getOptionalFields())
+                && Objects.equals(entry.getSecondaryOptionalFields(), entry.getSecondaryOptionalFields()), RetornoFeito);
     }
 
 
